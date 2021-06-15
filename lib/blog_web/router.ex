@@ -1,6 +1,8 @@
 defmodule BlogWeb.Router do
   use BlogWeb, :router
 
+  import BlogWeb.AuthorAuth
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,6 +10,7 @@ defmodule BlogWeb.Router do
     plug :put_root_layout, {BlogWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_current_author
   end
 
   pipeline :api do
@@ -39,5 +42,37 @@ defmodule BlogWeb.Router do
       pipe_through :browser
       live_dashboard "/dashboard", metrics: BlogWeb.Telemetry
     end
+  end
+
+  ## Authentication routes
+
+  scope "/", BlogWeb do
+    pipe_through [:browser, :redirect_if_author_is_authenticated]
+
+    get "/authors/register", AuthorRegistrationController, :new
+    post "/authors/register", AuthorRegistrationController, :create
+    get "/authors/log_in", AuthorSessionController, :new
+    post "/authors/log_in", AuthorSessionController, :create
+    get "/authors/reset_password", AuthorResetPasswordController, :new
+    post "/authors/reset_password", AuthorResetPasswordController, :create
+    get "/authors/reset_password/:token", AuthorResetPasswordController, :edit
+    put "/authors/reset_password/:token", AuthorResetPasswordController, :update
+  end
+
+  scope "/", BlogWeb do
+    pipe_through [:browser, :require_authenticated_author]
+
+    get "/authors/settings", AuthorSettingsController, :edit
+    put "/authors/settings", AuthorSettingsController, :update
+    get "/authors/settings/confirm_email/:token", AuthorSettingsController, :confirm_email
+  end
+
+  scope "/", BlogWeb do
+    pipe_through [:browser]
+
+    delete "/authors/log_out", AuthorSessionController, :delete
+    get "/authors/confirm", AuthorConfirmationController, :new
+    post "/authors/confirm", AuthorConfirmationController, :create
+    get "/authors/confirm/:token", AuthorConfirmationController, :confirm
   end
 end

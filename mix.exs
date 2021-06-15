@@ -35,6 +35,7 @@ defmodule Blog.MixProject do
     [
       {:phoenix, "~> 1.5.9"},
       {:phoenix_ecto, "~> 4.1"},
+      {:phx_gen_auth, "~> 0.6", only: [:dev], runtime: false},
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_live_view, "~> 0.15.1"},

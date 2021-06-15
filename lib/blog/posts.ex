@@ -8,6 +8,16 @@ defmodule Blog.Posts do
 
   alias Blog.Posts.Post
 
+  @topic inspect(__MODULE__)
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(Blog.PubSub, @topic)
+  end
+
+  defp broadcast_change({:ok, result}, event) do
+    Phoenix.PubSub.broadcast(Blog.PubSub, @topic, {__MODULE__, event, result})
+  end
+
   @doc """
   Returns the list of posts.
 
@@ -53,6 +63,7 @@ defmodule Blog.Posts do
     %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
+    |> broadcast_change([:post, :created])
   end
 
   @doc """
@@ -71,6 +82,7 @@ defmodule Blog.Posts do
     post
     |> Post.changeset(attrs)
     |> Repo.update()
+    |> broadcast_change([:post, :updated])
   end
 
   @doc """
@@ -86,7 +98,9 @@ defmodule Blog.Posts do
 
   """
   def delete_post(%Post{} = post) do
-    Repo.delete(post)
+    post
+    |> Repo.delete(post)
+    |> broadcast_change([:post, :deleted])
   end
 
   @doc """

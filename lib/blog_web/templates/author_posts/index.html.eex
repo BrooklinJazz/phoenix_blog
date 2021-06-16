@@ -1,0 +1,4 @@
+<div>I'm in the right place</div>
+<%= for post <- @posts do %>
+  <div><%= post.title %></div>
+<% end %>

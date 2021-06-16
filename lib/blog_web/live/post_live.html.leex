@@ -1,8 +1,0 @@
-<form action="#" phx-submit="add">
-  <%= text_input :post, :title, placeholder: "Blog Title" %>
-  <%# disables the button when the form is submitted to prevent double clicking. %>
-  <%= submit "Add", phx_disable_with: "Adding..." %>
-</form>
-<%= for post <- @posts do %>
-  <div><%= post.title %></div>
-<% end %>

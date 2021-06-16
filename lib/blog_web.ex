@@ -46,6 +46,7 @@ defmodule BlogWeb do
     quote do
       use Phoenix.LiveView,
         layout: {BlogWeb.LayoutView, "live.html"}
+        
 
       unquote(view_helpers())
     end

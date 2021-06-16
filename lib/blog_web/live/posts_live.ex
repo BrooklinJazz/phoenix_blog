@@ -1,4 +1,4 @@
-defmodule BlogWeb.PostLive do
+defmodule BlogWeb.PostsLive do
   use BlogWeb, :live_view
   alias Blog.Posts
 

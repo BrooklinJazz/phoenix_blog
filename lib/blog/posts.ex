@@ -31,6 +31,14 @@ defmodule Blog.Posts do
     Repo.all(Post)
   end
 
+  def list_posts(author_id) do
+    query =
+      from p in Post,
+        where: p.author_id == ^author_id
+
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single post.
 

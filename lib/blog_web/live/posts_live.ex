@@ -1,6 +1,11 @@
 defmodule BlogWeb.PostsLive do
   use BlogWeb, :live_view
   alias Blog.Posts
+  alias Blog.Accounts
+
+  def author_name(author_id) do
+    Accounts.get_author!(author_id).email
+  end
 
   def mount(_params, _session, socket) do
     Posts.subscribe()

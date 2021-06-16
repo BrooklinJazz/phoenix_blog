@@ -1,0 +1,33 @@
+.post_preview_container {
+  height: 200px;
+  max-width: 100%;
+  min-width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.post_preview_left {
+  flex: 2;
+  max-width: 66%; // forces text overflow in body
+}
+
+.post_preview_right {
+  flex: 1;
+}
+
+.post_preview_title {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.post_preview_subtitle {
+  font-size: large;
+  font-style: italic;
+}
+
+.post_preview_body {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-height: 100px;
+}

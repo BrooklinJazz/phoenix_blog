@@ -6,7 +6,8 @@ defmodule BlogWeb.AuthorPostsController do
 
   def index(conn, %{"author_id" => author_id}) do
     posts = Posts.list_posts(author_id)
-    render(conn, "index.html", posts: posts)
+    author = Accounts.get_client_safe_author!(author_id)
+    render(conn, "index.html", posts: posts, author: author)
   end
 
   def new(conn, _params) do

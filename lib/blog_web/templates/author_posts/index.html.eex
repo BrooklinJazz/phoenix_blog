@@ -1,4 +1,11 @@
-<div>I'm in the right place</div>
+<h1>Posts by <%= @author.email %></h1>
 <%= for post <- @posts do %>
-  <div><%= post.title %></div>
+  <div class="post_preview_container">
+    <div class="post_preview_left">
+      <div class="post_preview_title"><%= post.title %></div>
+      <div class="post_preview_subtitle"><%= post.subtitle %></div>
+      <p class="post_preview_body"><%= post.body %> </p>
+    </div>
+    <div class="post_preview_right"><img src="https://miro.medium.com/fit/c/250/168/1*0yuck3udWQGfjvmrg_TcAw.png"/></div>
+  </div>
 <% end %>

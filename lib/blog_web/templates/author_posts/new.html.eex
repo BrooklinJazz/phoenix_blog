@@ -1,0 +1,21 @@
+<div>Make a new Post</div>
+<%= form_for @changeset, Routes.author_posts_path(@conn, :create), fn f -> %>
+<%= if @changeset.action do %>
+  <div class="alert alert-danger">
+    <p>Oops, something went wrong! Please check the errors below.</p>
+  </div>
+<% end %>
+<label>
+  Title <%= text_input f, :title %>
+</label>
+<%= error_tag f, :title %>
+<label>
+  Subtitle <%= text_input f, :subtitle %>
+</label>
+<%= error_tag f, :subtitle %>
+<label>
+  Content <%= textarea f, :body %>
+</label>
+<%= error_tag f, :body %>
+<%= submit "Submit" %>
+<% end %>

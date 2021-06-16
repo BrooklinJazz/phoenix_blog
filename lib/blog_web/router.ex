@@ -20,7 +20,7 @@ defmodule BlogWeb.Router do
   scope "/", BlogWeb do
     pipe_through :browser
 
-    live "/posts", PostsLive, :index
+    live "/", PostsLive, :index
     get "/posts/:author_id", AuthorPostsController, :index
   end
 
@@ -66,6 +66,9 @@ defmodule BlogWeb.Router do
     get "/authors/settings", AuthorSettingsController, :edit
     put "/authors/settings", AuthorSettingsController, :update
     get "/authors/settings/confirm_email/:token", AuthorSettingsController, :confirm_email
+
+    get "new_post", AuthorPostsController, :new
+    post "new_post", AuthorPostsController, :create
   end
 
   scope "/", BlogWeb do

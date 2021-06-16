@@ -3,7 +3,8 @@
     <li><%= @current_author.email %></li>
     <li><%= link "Settings", to: Routes.author_settings_path(@conn, :edit) %></li>
     <li><%= link "Log out", to: Routes.author_session_path(@conn, :delete), method: :delete %></li>
-    <li><%= link "My Posts", to: Routes.posts_path(@conn, :list, @current_author.id) %></li>
+    <li><%= link "My Posts", to: Routes.author_posts_path(@conn, :index, @current_author.id) %></li>
+    <li><%= link "New Post", to: Routes.author_posts_path(@conn, :new) %></li>
   <% else %>
     <li><%= link "Register", to: Routes.author_registration_path(@conn, :new) %></li>
     <li><%= link "Log in", to: Routes.author_session_path(@conn, :new) %></li>

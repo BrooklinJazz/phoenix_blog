@@ -16,6 +16,11 @@ defmodule Blog.Posts do
 
   defp broadcast_change({:ok, result}, event) do
     Phoenix.PubSub.broadcast(Blog.PubSub, @topic, {__MODULE__, event, result})
+    {:ok, result}
+  end
+
+  defp broadcast_change({:error, result}, _event) do
+    {:error, result}
   end
 
   @doc """

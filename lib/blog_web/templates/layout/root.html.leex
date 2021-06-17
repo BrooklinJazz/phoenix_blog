@@ -11,19 +11,7 @@
   </head>
   <body>
     <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <!--
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-            -->
-          </ul>
-          <%= render "_author_menu.html", assigns %>
-        </nav>
-        <h1> <%= link "Small", to: Routes.posts_path(@conn, :index) %></h1>
-      </section>
+      <%= render "_header_navigation.html", assigns %>
     </header>
     <%= @inner_content %>
   </body>

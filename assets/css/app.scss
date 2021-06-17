@@ -2,7 +2,27 @@
 @import "./phoenix.css";
 @import "./post_preview.scss";
 @import "./post.scss";
+@import "./header.scss";
 /* LiveView specific classes for your customizations */
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: grey;
+}
+
+a:active {
+  color: black;
+}
+
 .phx-no-feedback.invalid-feedback,
 .phx-no-feedback .invalid-feedback {
   display: none;

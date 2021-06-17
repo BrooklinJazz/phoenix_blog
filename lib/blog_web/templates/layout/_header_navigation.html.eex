@@ -1,0 +1,23 @@
+<section class="header_container">
+  <%= link "Small", to: Routes.posts_path(@conn, :index), class: "header_brand" %>
+  <nav class="header_navigation" role="navigation">
+    <%= if @current_author do %>
+      <!--    <ul>
+        <li><%= link "Settings", to: Routes.author_settings_path(@conn, :edit) %></li>
+        <li><%= link "Log out", to: Routes.author_session_path(@conn, :delete), method: :delete %></li>
+        <li><%= link "My Posts", to: Routes.author_posts_path(@conn, :index, @current_author.id) %></li>
+        <li><%= link "New Post", to: Routes.author_posts_path(@conn, :new) %></li>
+
+
+    </ul>
+    -->
+      <%= link "My Posts", to: Routes.author_posts_path(@conn, :index, @current_author.id), class: "header_link" %>
+      <%= link "New Post", to: Routes.author_posts_path(@conn, :new), class: "header_link" %>
+      <%= link "Settings", to: Routes.author_settings_path(@conn, :edit), class: "header_link" %>
+      <%= link "Log out", to: Routes.author_session_path(@conn, :delete), method: :delete, class: "header_link" %>
+    <%= else %>
+      <%= link "Register", to: Routes.author_registration_path(@conn, :new), class: "header_link" %>
+      <%= link "Log in", to: Routes.author_session_path(@conn, :new), class: "header_link" %>
+    <% end %>
+  </nav>
+</section>

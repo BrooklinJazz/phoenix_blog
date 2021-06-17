@@ -1,0 +1,27 @@
+.post_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.post_title {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.post_subtitle {
+  font-size: xx-large;
+  font-style: italic;
+}
+
+.post_body {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-height: 100px;
+}
+
+.post_image {
+  width: 80%;
+  margin: 20px 0;
+}

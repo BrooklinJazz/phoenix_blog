@@ -10,6 +10,12 @@ defmodule BlogWeb.AuthorPostsController do
     render(conn, "index.html", posts: posts, author: author)
   end
 
+  def show(conn, %{"post_id" => post_id}) do
+    post = Posts.get_post!(post_id)
+    author = Accounts.get_client_safe_author!(post.author_id)
+    render(conn, "show.html", post: post, author: author)
+  end
+
   def new(conn, _params) do
     changeset = Posts.change_post(%Post{})
     render(conn, "new.html", changeset: changeset)

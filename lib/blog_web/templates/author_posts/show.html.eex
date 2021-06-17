@@ -1,0 +1,7 @@
+<h1></h1>
+<div class="post_container">
+  <div class="post_title"><%= @post.title%> by <%= @author.email %></div>
+  <div class="post_subtitle"><%= @post.subtitle %></div>
+  <img class="post_image" src="https://miro.medium.com/fit/c/250/168/1*0yuck3udWQGfjvmrg_TcAw.png"/>
+  <p class="post_body"><%= @post.body %> </p>
+</div>

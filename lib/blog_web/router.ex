@@ -21,7 +21,8 @@ defmodule BlogWeb.Router do
     pipe_through :browser
 
     live "/", PostsLive, :index
-    get "/posts/:author_id", AuthorPostsController, :index
+    get "/author/:author_id", AuthorPostsController, :index
+    get "/posts/:post_id", AuthorPostsController, :show
   end
 
   # Other scopes may use custom stacks.

@@ -1,6 +1,6 @@
 <ul>
   <%= if @current_author do %>
-    <li><%= @current_author.email %></li>
+    <li><%= @current_author.name %></li>
     <li><%= link "Settings", to: Routes.author_settings_path(@conn, :edit) %></li>
     <li><%= link "Log out", to: Routes.author_session_path(@conn, :delete), method: :delete %></li>
     <li><%= link "My Posts", to: Routes.author_posts_path(@conn, :index, @current_author.id) %></li>

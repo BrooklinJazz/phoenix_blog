@@ -1,4 +1,4 @@
-<h1>Posts by <%= @author.email %></h1>
+<h1>Posts by <%= @author.name %></h1>
 <%= for post <- @posts do %>
   <div class="post_preview_container">
     <div class="post_preview_left">

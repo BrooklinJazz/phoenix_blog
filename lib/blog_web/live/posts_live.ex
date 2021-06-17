@@ -4,7 +4,7 @@ defmodule BlogWeb.PostsLive do
   alias Blog.Accounts
 
   def author_name(author_id) do
-    Accounts.get_author!(author_id).email
+    Accounts.get_author!(author_id).name
   end
 
   def mount(_params, _session, socket) do

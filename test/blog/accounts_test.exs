@@ -96,7 +96,7 @@ defmodule Blog.AccountsTest do
   describe "change_author_registration/2" do
     test "returns a changeset" do
       assert %Ecto.Changeset{} = changeset = Accounts.change_author_registration(%Author{})
-      assert changeset.required == [:password, :email]
+      assert changeset.required == [:password, :email, :name]
     end
 
     test "allows fields to be set" do
@@ -119,7 +119,7 @@ defmodule Blog.AccountsTest do
   describe "change_author_email/2" do
     test "returns a author changeset" do
       assert %Ecto.Changeset{} = changeset = Accounts.change_author_email(%Author{})
-      assert changeset.required == [:email]
+      assert changeset.required == [:email, :name]
     end
   end
 
@@ -167,7 +167,10 @@ defmodule Blog.AccountsTest do
 
     test "applies the email without persisting it", %{author: author} do
       email = unique_author_email()
-      {:ok, author} = Accounts.apply_author_email(author, valid_author_password(), %{email: email})
+
+      {:ok, author} =
+        Accounts.apply_author_email(author, valid_author_password(), %{email: email})
+
       assert author.email == email
       assert Accounts.get_author!(author.id).email != email
     end
@@ -222,7 +225,9 @@ defmodule Blog.AccountsTest do
     end
 
     test "does not update email if author email changed", %{author: author, token: token} do
-      assert Accounts.update_author_email(%{author | email: "current@example.com"}, token) == :error
+      assert Accounts.update_author_email(%{author | email: "current@example.com"}, token) ==
+               :error
+
       assert Repo.get!(Author, author.id).email == author.email
       assert Repo.get_by(AuthorToken, author_id: author.id)
     end
@@ -487,7 +492,9 @@ defmodule Blog.AccountsTest do
     end
 
     test "updates the password", %{author: author} do
-      {:ok, updated_author} = Accounts.reset_author_password(author, %{password: "new valid password"})
+      {:ok, updated_author} =
+        Accounts.reset_author_password(author, %{password: "new valid password"})
+
       assert is_nil(updated_author.password)
       assert Accounts.get_author_by_email_and_password(author.email, "new valid password")
     end

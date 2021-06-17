@@ -10,7 +10,8 @@ defmodule Blog.AccountsFixtures do
   def valid_author_attributes(attrs \\ %{}) do
     Enum.into(attrs, %{
       email: unique_author_email(),
-      password: valid_author_password()
+      password: valid_author_password(),
+      name: "default name"
     })
   end
 

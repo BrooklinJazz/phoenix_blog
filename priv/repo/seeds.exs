@@ -19,23 +19,23 @@ alias Blog.Posts.Post
 Repo.delete_all(Post)
 Repo.delete_all(Author)
 
-# {:ok, author} =
-#   Accounts.register_author(%{
-#     name: "test author",
-#     email: "test@test.ca",
-#     password: "supersecretpassword"
-#   })
+{:ok, author} =
+  Accounts.register_author(%{
+    name: "test author",
+    email: "test@test.ca",
+    password: "supersecretpassword"
+  })
 
-# body = for _ <- 1..1000, into: "", do: <<Enum.random('0123456789abcdef ')>>
+body = for _ <- 1..1000, into: "", do: <<Enum.random('0123456789abcdef ')>>
 
-# Enum.each(1..10, fn n ->
-#   str = to_string(n)
+Enum.each(1..10, fn n ->
+  str = to_string(n)
 
-#   Posts.create_post(%{
-#     title: "test title" <> str,
-#     subtitle: "test subtitle" <> str,
-#     author_id: author.id,
-#     body: body,
-#     tags: ["elixir"]
-#   })
-# end)
+  Posts.create_post(%{
+    title: "test title" <> str,
+    subtitle: "test subtitle" <> str,
+    author_id: author.id,
+    body: body,
+    tags: ["elixir"]
+  })
+end)

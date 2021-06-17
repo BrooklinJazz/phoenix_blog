@@ -112,7 +112,7 @@ defmodule Blog.Posts do
   """
   def delete_post(%Post{} = post) do
     post
-    |> Repo.delete(post)
+    |> Repo.delete()
     |> broadcast_change([:post, :deleted])
   end
 

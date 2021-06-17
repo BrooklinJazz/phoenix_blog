@@ -4,6 +4,7 @@ defmodule Blog.Accounts.Author do
 
   @derive {Inspect, except: [:password]}
   schema "authors" do
+    field :name, :string
     field :email, :string
     field :password, :string, virtual: true
     field :hashed_password, :string

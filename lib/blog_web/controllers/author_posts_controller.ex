@@ -9,7 +9,7 @@ defmodule BlogWeb.AuthorPostsController do
   end
 
   def index(conn, %{"author_id" => author_id}) do
-    posts = Posts.list_posts(author_id) |> Enum.reverse()
+    posts = Posts.list_posts(author_id)
     author = Accounts.get_client_safe_author!(author_id)
     render(conn, "index.html", posts: posts, author: author)
   end

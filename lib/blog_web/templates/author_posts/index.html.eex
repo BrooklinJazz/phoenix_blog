@@ -6,7 +6,9 @@
       <div class="post_preview_subtitle"><%= post.subtitle %></div>
       <p class="post_preview_body"><%= post.body %> </p>
     </div>
-    <div class="post_preview_right"><img src="https://miro.medium.com/fit/c/250/168/1*0yuck3udWQGfjvmrg_TcAw.png"/></div>
+    <%= if post.link do %>
+      <div class="post_preview_right"><img src="<%= post.link %>"/></div>
+    <% end %>
   </div>
 <% end %>
 <%= if @posts == [] do %>

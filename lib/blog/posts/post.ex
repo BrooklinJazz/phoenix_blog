@@ -8,6 +8,7 @@ defmodule Blog.Posts.Post do
     field :tags, {:array, :string}, default: []
     field :title, :string
     field :author_id, :id
+    field :link, :string
 
     timestamps()
   end
@@ -15,7 +16,7 @@ defmodule Blog.Posts.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:title, :subtitle, :body, :tags, :author_id])
+    |> cast(attrs, [:title, :subtitle, :body, :tags, :author_id, :link])
     |> validate_required([:title, :author_id])
   end
 end

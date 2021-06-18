@@ -13,6 +13,10 @@
 </label>
 <%= error_tag f, :subtitle %>
 <label>
+  Image Link <%= text_input f, :link %>
+</label>
+<%= error_tag f, :title %>
+<label>
   Content <%= textarea f, :body %>
 </label>
 <%= error_tag f, :body %>

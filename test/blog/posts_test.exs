@@ -28,6 +28,8 @@ defmodule Blog.PostsTest do
       assert post.subtitle == "some subtitle"
       assert post.tags == []
       assert post.title == "some title"
+      assert post.author_id == author.id
+      assert post.link == valid_attrs.link
     end
 
     test "create_post/1 with invalid data returns error changeset" do

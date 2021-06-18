@@ -19,6 +19,7 @@ defmodule Blog.PostsFixtures do
       body: "some body",
       subtitle: "some subtitle",
       tags: [],
+      link: "https://miro.medium.com/fit/c/250/168/1*0yuck3udWQGfjvmrg_TcAw.png",
       title: "some title",
       author_id: author.id
     }
@@ -30,6 +31,7 @@ defmodule Blog.PostsFixtures do
       update_attrs: %{
         body: "some updated body",
         subtitle: "some updated subtitle",
+        link: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
         tags: [],
         title: "some updated title",
         author_id: author.id

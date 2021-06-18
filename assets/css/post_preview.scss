@@ -9,7 +9,8 @@
 
 .post_preview_left {
   flex: 2;
-  max-width: 66%; // forces text overflow in body
+  flex-grow: 2;
+  // max-width: 66%; // forces text overflow in body
 }
 
 .post_preview_right {

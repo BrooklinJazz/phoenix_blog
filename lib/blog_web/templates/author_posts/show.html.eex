@@ -6,6 +6,8 @@
     <%= link "Edit", to: Routes.author_posts_path(BlogWeb.Endpoint, :edit, @post.id) %>
     <%= link "Delete", to: Routes.author_posts_path(BlogWeb.Endpoint, :delete, @post.id), method: :delete %>
   <% end %>
-  <img class="post_image" src="https://miro.medium.com/fit/c/250/168/1*0yuck3udWQGfjvmrg_TcAw.png"/>
+  <%= if @post.link do %>
+    <img class="post_image" src="<%= @post.link %>"/>
+  <% end %>
   <p class="post_body"><%= @post.body %> </p>
 </div>

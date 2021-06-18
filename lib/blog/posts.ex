@@ -33,13 +33,18 @@ defmodule Blog.Posts do
 
   """
   def list_posts do
-    Repo.all(Post)
+    query =
+      from p in Post,
+        order_by: [desc: :inserted_at]
+
+    Repo.all(query)
   end
 
   def list_posts(author_id) do
     query =
       from p in Post,
-        where: p.author_id == ^author_id
+        where: p.author_id == ^author_id,
+        order_by: [desc: :inserted_at]
 
     Repo.all(query)
   end

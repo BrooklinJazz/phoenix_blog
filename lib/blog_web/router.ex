@@ -68,8 +68,10 @@ defmodule BlogWeb.Router do
     put "/authors/settings", AuthorSettingsController, :update
     get "/authors/settings/confirm_email/:token", AuthorSettingsController, :confirm_email
 
-    get "new_post", AuthorPostsController, :new
-    post "new_post", AuthorPostsController, :create
+    get "/new_post", AuthorPostsController, :new
+    post "/new_post", AuthorPostsController, :create
+    get "/edit_post/:post_id", AuthorPostsController, :edit
+    post "/edit_post/:post_id", AuthorPostsController, :update
   end
 
   scope "/", BlogWeb do

@@ -12,8 +12,12 @@ defmodule BlogWeb.AuthorPostsController do
 
   def show(conn, %{"post_id" => post_id}) do
     post = Posts.get_post!(post_id)
+    author_token = get_session(conn, :author_token)
+    current_author = Accounts.get_author_by_session_token(author_token)
     author = Accounts.get_client_safe_author!(post.author_id)
-    render(conn, "show.html", post: post, author: author)
+    IO.inspect(current_author)
+    IO.inspect(author)
+    render(conn, "show.html", post: post, author: author, current_author: current_author)
   end
 
   def new(conn, _params) do
@@ -34,6 +38,29 @@ defmodule BlogWeb.AuthorPostsController do
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
+    end
+  end
+
+  def edit(conn, %{"post_id" => post_id}) do
+    changeset = Posts.change_post(%Post{})
+    post = Posts.get_post!(post_id)
+    render(conn, "edit.html", changeset: changeset, current_post: post)
+  end
+
+  def update(conn, %{"post_id" => post_id, "post" => post_params}) do
+    author_token = get_session(conn, :author_token)
+    author = Accounts.get_author_by_session_token(author_token)
+
+    previous_post = Posts.get_post!(post_id)
+
+    case Posts.update_post(previous_post, post_params) do
+      {:ok, _post} ->
+        conn
+        |> put_flash(:info, "Post updated successfully.")
+        |> show(%{"post_id" => post_id})
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", changeset: changeset, current_post: previous_post)
     end
   end
 end

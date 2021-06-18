@@ -2,7 +2,7 @@
 <%= for post <- @posts do %>
   <div class="post_preview_container">
     <div class="post_preview_left">
-      <div class="post_preview_title"><%= post.title %></div>
+      <div class="post_preview_title"><%= link post.title, to: Routes.author_posts_path(BlogWeb.Endpoint, :show, post.id) %></div>
       <div class="post_preview_subtitle"><%= post.subtitle %></div>
       <p class="post_preview_body"><%= post.body %> </p>
     </div>

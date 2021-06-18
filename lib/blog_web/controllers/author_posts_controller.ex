@@ -20,8 +20,6 @@ defmodule BlogWeb.AuthorPostsController do
     post = Posts.get_post!(post_id)
     current_author = get_current_author(conn)
     author = Accounts.get_client_safe_author!(post.author_id)
-    IO.inspect(current_author)
-    IO.inspect(author)
     render(conn, "show.html", post: post, author: author, current_author: current_author)
   end
 

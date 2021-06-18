@@ -17,7 +17,7 @@ defmodule BlogWeb.PostsLive do
   end
 
   defp fetch(socket) do
-    assign(socket, posts: Posts.list_posts())
+    assign(socket, posts: Posts.list_posts() |> Enum.reverse())
   end
 
   def handle_event("add", %{"post" => post}, socket) do

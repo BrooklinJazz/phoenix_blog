@@ -2,7 +2,7 @@
 <div class="post_container">
   <div class="post_title"><%= @post.title%> by <%= @author.name %></div>
   <div class="post_subtitle"><%= @post.subtitle %></div>
-  <%= if @current_author.id === @author.id do %>
+  <%= if @current_author && @current_author.id === @author.id do %>
     <%= link "Edit", to: Routes.author_posts_path(BlogWeb.Endpoint, :edit, @post.id) %>
     <%= link "Delete", to: Routes.author_posts_path(BlogWeb.Endpoint, :delete, @post.id), method: :delete %>
   <% end %>

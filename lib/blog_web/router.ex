@@ -67,12 +67,15 @@ defmodule BlogWeb.Router do
     get "/authors/settings", AuthorSettingsController, :edit
     put "/authors/settings", AuthorSettingsController, :update
     get "/authors/settings/confirm_email/:token", AuthorSettingsController, :confirm_email
+  end
 
-    get "/new_post", AuthorPostsController, :new
-    post "/new_post", AuthorPostsController, :create
-    get "/edit_post/:post_id", AuthorPostsController, :edit
-    post "/edit_post/:post_id", AuthorPostsController, :update
-    delete "/delete_post/:post_id", AuthorPostsController, :delete
+  scope "/post", BlogWeb do
+    pipe_through [:browser, :require_authenticated_author]
+    get "/new", AuthorPostsController, :new
+    post "/new", AuthorPostsController, :create
+    get "/edit/:post_id", AuthorPostsController, :edit
+    post "/edit/:post_id", AuthorPostsController, :update
+    delete "/edit/:post_id", AuthorPostsController, :delete
   end
 
   scope "/", BlogWeb do

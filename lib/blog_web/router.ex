@@ -72,6 +72,7 @@ defmodule BlogWeb.Router do
     post "/new_post", AuthorPostsController, :create
     get "/edit_post/:post_id", AuthorPostsController, :edit
     post "/edit_post/:post_id", AuthorPostsController, :update
+    delete "/delete_post/:post_id", AuthorPostsController, :delete
   end
 
   scope "/", BlogWeb do

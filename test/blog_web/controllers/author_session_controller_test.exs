@@ -35,7 +35,7 @@ defmodule BlogWeb.AuthorSessionControllerTest do
       # Now do a logged in request and assert on the menu
       conn = get(conn, "/")
       response = html_response(conn, 200)
-      assert response =~ author.email
+      assert response =~ author.name
       assert response =~ "Settings</a>"
       assert response =~ "Log out</a>"
     end

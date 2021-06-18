@@ -9,3 +9,6 @@
     <div class="post_preview_right"><img src="https://miro.medium.com/fit/c/250/168/1*0yuck3udWQGfjvmrg_TcAw.png"/></div>
   </div>
 <% end %>
+<%= if @posts == [] do %>
+  <%= link "No posts yet! let's make one!", to: Routes.author_posts_path(BlogWeb.Endpoint, :create) %>
+<% end %>

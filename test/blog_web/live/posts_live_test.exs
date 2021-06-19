@@ -3,7 +3,6 @@ defmodule BlogWeb.PostsLiveTest do
 
   import Phoenix.LiveViewTest
   use Blog.PostsFixtures
-  import Blog.PostsFixtures
 
   test "disconnected and connected render", %{conn: conn, post: post} do
     {:ok, page_live, disconnected_html} = live(conn, "/")
